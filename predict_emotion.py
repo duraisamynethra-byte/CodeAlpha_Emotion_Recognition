@@ -52,7 +52,8 @@ if mfcc.shape[1] < max_length:
     )
 else:
     mfcc = mfcc[:, :max_length]
-
+# Normalize MFCC features the same way as training
+mfcc = (mfcc - np.mean(mfcc)) / np.std(mfcc)
 
 # Add dimensions for CNN
 mfcc = mfcc[np.newaxis, ..., np.newaxis]
